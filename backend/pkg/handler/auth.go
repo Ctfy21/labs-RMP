@@ -35,8 +35,14 @@ func (h *Handler) signIn(c *gin.Context) {
 
 	id, exists := c.Get(userCtx)
 	if exists {
+		user, err := h.services.GetUserByID(id.(int))
+		if err != nil {
+			newErrorResponse(c, http.StatusBadRequest, "Invalid during get User by UserId")
+			return
+		}
 		c.JSON(http.StatusOK, map[string]interface{}{
-			"id": id,
+			"username": user.Username,
+			"email":    user.Email,
 		})
 	} else {
 		var input signInInput

@@ -34,3 +34,11 @@ func (r *AuthPostgres) GetUser(username, password string) (todo.User, error) {
 
 	return user, err
 }
+
+func (r *AuthPostgres) GetUserByID(id int) (todo.User, error) {
+	var user todo.User
+	query := fmt.Sprintf("SELECT * FROM %s WHERE id=$1", usersTable)
+	err := r.db.Get(&user, query, id)
+
+	return user, err
+}

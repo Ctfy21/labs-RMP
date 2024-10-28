@@ -11,6 +11,7 @@ type Authorization interface {
 	CreateUser(user todo.User) (int, error)
 	GenerateToken(username, password string) (string, error)
 	ParseToken(accessToken string) (int, error)
+	GetUserByID(id int) (todo.User, error)
 }
 
 type Service struct {

@@ -16,3 +16,11 @@ export const getData = async (key) => {
         throw new Error(e)
     }
   };
+
+export const removeData = async (key) => {
+  try {
+    await AsyncStorage.removeItem(key);
+  } catch (e) {
+      throw new Error(e)
+  }
+};

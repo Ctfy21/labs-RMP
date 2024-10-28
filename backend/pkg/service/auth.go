@@ -30,6 +30,10 @@ func (s *AuthService) CreateUser(user todo.User) (int, error) {
 	return s.repo.CreateUser(user)
 }
 
+func (s *AuthService) GetUserByID(id int) (todo.User, error) {
+	return s.repo.GetUserByID(id)
+}
+
 func generatePasswordHash(password string) string {
 	hash := sha1.New()
 	hash.Write([]byte(password))

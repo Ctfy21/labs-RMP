@@ -2,7 +2,7 @@ const signUpURL = "http://192.168.3.82:8000/auth/sign-up"
 const signInURL = "http://192.168.3.82:8000/auth/sign-in"
 const key_local_storage_token = "jwt_token"
 
-import { storeData, getData } from '@/scripts/local-storage'
+import { storeData, getData, removeData } from '@/scripts/local-storage'
 
 export const createUser = async (email, password, username) => {
     try{
@@ -59,6 +59,16 @@ export const signIn = async (username, password) => {
     }
 }
 
+export const signOut = async () => {
+  try{
+    await removeData(key_local_storage_token)
+  }
+  catch(error){
+    console.log(error)
+    throw new Error(error)
+  }
+}
+
 export const getCurrentUser = async () => {
   const current_account_token = await getData(key_local_storage_token)
 
@@ -77,6 +87,6 @@ export const getCurrentUser = async () => {
   console.log(json)
   if(response.status != 200) throw Error;
 
-  return json.id
+  return json
 }
 
