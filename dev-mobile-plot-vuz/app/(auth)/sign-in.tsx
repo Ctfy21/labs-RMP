@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import FormField from '@/components/FormField'
 import CustomButton from '@/components/CustomButton'
 import { Link, router } from 'expo-router'
-import { signIn } from '@/scripts/APIconfig'
+import { signIn } from '@/scripts/api-config'
 
 const SignIn = () => {
   const [form, setForm] = useState({
